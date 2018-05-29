@@ -18,7 +18,7 @@ General submission guidelines are provided by Treehouse and can be found here: h
 * [Keyword cipher](https://en.wikipedia.org/wiki/Keyword_cipher)
 * [Hill cipher](https://en.wikipedia.org/wiki/Hill_cipher)
 
-*Note: Caesar Cipher is included as a starter file & does not count toward one of the three requirements*
+*Note: Caesar Cipher is included as a starter file and does not count toward one of the three requirements.*
 
 #### Provide a command line menu providing an option to either encrypt or decrypt a value.  Then, in a sub-menu, provide a list of implemented ciphers.
     E) Encrypt
@@ -32,8 +32,6 @@ General submission guidelines are provided by Treehouse and can be found here: h
 #### Prompt the user for input to encrypt or decrypt and, if applicable, any additional input settings required to perform the cipher process.
 
 #### The input value is correctly encrypted or decrypted using the chosen cipher and the output is displayed on the screen.
-
-#### Ensure that all items on the [Student Project Submission Checklist](http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf) are completed.
 
 #### *General Guidelines*
 * Include informative information docstrings in functions and/or methods.
@@ -54,4 +52,4 @@ General submission guidelines are provided by Treehouse and can be found here: h
 
 could be represented as 
 
->"LFDKA NMYML K1KZE &XPQR".
+>"LFDKA NMYML K1KZE &XPQR"
