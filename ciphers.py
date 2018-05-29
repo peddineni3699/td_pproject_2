@@ -6,6 +6,3 @@ class Cipher:
 
     def decrypt(self):
         raise NotImplementedError()
-
-
-
