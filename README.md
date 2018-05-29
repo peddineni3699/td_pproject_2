@@ -33,8 +33,6 @@ General submission guidelines are provided by Treehouse and can be found here: h
 
 #### The input value is correctly encrypted or decrypted using the chosen cipher and the output is displayed on the screen.
 
-#### Ensure that all items on the [Student Project Submission Checklist](http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf) are completed.
-
 #### *General Guidelines*
 * Include informative information docstrings in functions and/or methods.
 
