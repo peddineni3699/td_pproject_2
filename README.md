@@ -7,8 +7,16 @@ General submission guidelines are provided by Treehouse and can be found here: h
 
 # Requirements
 
-#### TBD
-    TBD
+#### Choose at least 3 basic ciphers from the following list of implement encrypting and decrypting abilities
+* Alberti cipher
+* Affine cipher
+* Atbash cipher
+* Polybius square cipher
+* Transposition cipher
+* ADFGVX cipher
+* Bifid cipher
+* Keyword cipher
+* Hill cipher
 
 #### TBD
     TBD
