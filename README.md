@@ -31,7 +31,7 @@ General submission guidelines are provided by Treehouse and can be found here: h
 
 #### Prompt the user for input to encrypt or decrypt and, if applicable, any additional input settings required to perform the cipher process.
 
-#### The input value is correctly encrypted or decrypted using hte chosen cipher and the output is displayed on the screen.
+#### The input value is correctly encrypted or decrypted using the chosen cipher and the output is displayed on the screen.
 
 #### Include informative information docstrings in functions and/or methods.
 
