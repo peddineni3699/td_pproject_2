@@ -18,7 +18,7 @@ General submission guidelines are provided by Treehouse and can be found here: h
 * [Keyword cipher](https://en.wikipedia.org/wiki/Keyword_cipher)
 * [Hill cipher](https://en.wikipedia.org/wiki/Hill_cipher)
 
-*Note: Caesar Cipher is included as a starter file & does not count toward one of the three requirements*
+*Note: Caesar Cipher is included as a starter file and does not count toward one of the three requirements.*
 
 #### Provide a command line menu providing an option to either encrypt or decrypt a value.  Then, in a sub-menu, provide a list of implemented ciphers.
     E) Encrypt
