@@ -1,4 +1,4 @@
-# td_py2_secret_messages
+# Secret Messages
 For Treehouse TechDegree (Python), Unit 2: Secret Messages
 
 ---
@@ -18,7 +18,7 @@ General submission guidelines are provided by Treehouse and can be found here: h
 * [Keyword cipher](https://en.wikipedia.org/wiki/Keyword_cipher)
 * [Hill cipher](https://en.wikipedia.org/wiki/Hill_cipher)
 
-*Note: Caesar Cipher is included as a started file & does not count toward one of the three requirements*
+*Note: Caesar Cipher is included as a starter file & does not count toward one of the three requirements*
 
 #### Provide a command line menu providing an option to either encrypt or decrypt a value.  Then, in a sub-menu, provide a list of implemented ciphers.
     E) Encrypt
@@ -31,7 +31,7 @@ General submission guidelines are provided by Treehouse and can be found here: h
 
 #### Prompt the user for input to encrypt or decrypt and, if applicable, any additional input settings required to perform the cipher process.
 
-#### The input value is correclty encrypted or decrypted using hte chosen cipher and the output is displayed on the screen.
+#### The input value is correctly encrypted or decrypted using hte chosen cipher and the output is displayed on the screen.
 
 #### Include informative information docstrings in functions and/or methods.
 
@@ -42,11 +42,15 @@ General submission guidelines are provided by Treehouse and can be found here: h
 #### Ensure that all items on the [Student Project Submission Checklist](http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf) are completed.
 
 ## EXTRA CREDIT (1/2)
-#### Implement a [one time pad]() to secure the cipher.
+#### Implement a [one time pad](https://en.wikipedia.org/wiki/One-time_pad) to secure the cipher.
     A one time pad is an additional input step required prior to encrypting and decrypting a message.  As long as both the sender and receiver use the same pad, the message itself becomes secure.  Without the pad, the message cannot be recovered.
 *Example:* TBD
 
 ## EXTRA CREDIT (2/2)
 #### Encrypted output is displayed in 5 character blocks, with padding added as required.
 *Example:*
-> "The quick brown fox" could be represented as "LFDKA NMYML K1KZE &XPQR".
+> "The quick brown fox" 
+
+could be represented as 
+
+>"LFDKA NMYML K1KZE &XPQR".
