@@ -1,6 +1,7 @@
 import caesar
 import ciphers
 
-value = input("Enter something: ")
-print (value)
-print ("The project has started!")
+if __name__ == '__main__':
+    value = input("Enter something: ")
+    print (value)
+    print ("The project has started!")
