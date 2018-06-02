@@ -3,6 +3,7 @@ import string
 
 from ciphers import Cipher
 
+
 primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
 
 class Affine(Cipher):
@@ -15,4 +16,4 @@ class Affine(Cipher):
         self.a = primes.pop(random.randrange(len(primes)))
         self.b = random.choice(primes)
 
-        self.letters = {number: letter for number, letter in zip(range(0, 26), string.ascii_uppercase)}
+        self.letters = {letter: number for letter, number in zip(string.ascii_uppercase, range(0, 26))}
