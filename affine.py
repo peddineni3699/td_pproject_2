@@ -3,7 +3,7 @@ import string
 
 from ciphers import Cipher
 
-LETTERS = string.ascii_uppercase
+CHARACTERS = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation + string.whitespace
 
 class Affine(Cipher):
     def __init__(self, a=5, b=random.randrange(100)):
@@ -13,55 +13,54 @@ class Affine(Cipher):
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
         if self.coprimes_identified(a):
-            raise ValueError("'a' and {} cannot be coprimes.  Please enter a different value for 'a'."
-                .format(len(LETTERS)))
+            raise ValueError("'a' and {} must be coprimes.  Please enter a different value for 'a'."
+                .format(len(CHARACTERS)))
         self.a = a
         self.b = b
-        
+
 
     def encrypt(self, text):
         ciphertext = []
-        text = text.upper()
+        # text = text.upper()
         for char in text:
             try:
-                key = (self.a * LETTERS.index(char) + self.b) % len(LETTERS)
+                key = (self.a * CHARACTERS.index(char) + self.b) % len(CHARACTERS)
             except ValueError:
                 ciphertext.append(char)
             else:
-                ciphertext.append(LETTERS[key])
+                ciphertext.append(CHARACTERS[key])
         return ''.join(ciphertext)
 
 
     def decrypt(self, ciphertext):
         text = []
-        ciphertext = ciphertext.upper()
+        # ciphertext = ciphertext.upper()
         for char in ciphertext:
             try:
-                key = self.mult_mod_inv() * (LETTERS.index(char) - self.b) % len(LETTERS)
+                key = self.mult_mod_inv() * (CHARACTERS.index(char) - self.b) % len(CHARACTERS)
             except ValueError:
                 text.append(char)
             else:
-                text.append(LETTERS[key])
+                text.append(CHARACTERS[key])
         return ''.join(text)
 
 
     def mult_mod_inv(self):
         # A rather brute-force method of finding the multiplicative modular inverse
         factor = 1
-        mod_inv = self.a % len(LETTERS)
+        mod_inv = self.a % len(CHARACTERS)
 
         while (mod_inv != 1):
             factor += 1 
-            mod_inv = self.a * factor % len(LETTERS)
+            mod_inv = self.a * factor % len(CHARACTERS)
         return factor
 
     
     def coprimes_identified(self, a):
-        ordered_set = {a, len(LETTERS)}
-        smaller_number = ordered_set.pop()
-        larger_number = ordered_set.pop()
+        larger_number = a if a > len(CHARACTERS) else len(CHARACTERS)
 
-        for _ in range(int(larger_number/2)):
-            if larger_number % smaller_number == 0:
+        for divisor in range(2, int(larger_number/2)):
+            if a % divisor == 0 and len(CHARACTERS) % divisor == 0:
+                print("{} found to be a common divisor".format(divisor))
                 return True
-            return False
+        return False
