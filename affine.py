@@ -51,24 +51,4 @@ class Affine(Cipher):
             else:
                 text.append(self.CHARACTERS[key])
         return ''.join(text)
-
-
-    # def mult_mod_inv(self):
-    #     # A rather brute-force method of finding the multiplicative modular inverse
-    #     factor = 1
-    #     mod_inv = self.a % len(CHARACTERS)
-
-    #     while (mod_inv != 1):
-    #         factor += 1 
-    #         mod_inv = self.a * factor % len(CHARACTERS)
-    #     return factor
-
-    
-    # def coprimes_identified(self, a):
-    #     larger_number = a if a > len(CHARACTERS) else len(CHARACTERS)
-
-    #     for divisor in range(2, int(larger_number/2)):
-    #         if a % divisor == 0 and len(CHARACTERS) % divisor == 0:
-    #             raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
-    #                 .format(divisor, len(CHARACTERS)))
-    #     return False
+        
