@@ -3,8 +3,6 @@ import string
 
 from ciphers import Cipher
 
-
-# primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
 LETTERS = string.ascii_uppercase
 
 class Affine(Cipher):
