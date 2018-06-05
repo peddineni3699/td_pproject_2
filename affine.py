@@ -1,3 +1,4 @@
+import math_utils
 import random
 import string
 
@@ -13,7 +14,7 @@ class Affine(Cipher):
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
         try:
-            self.coprimes_identified(a)
+            math_utils.coprimes_identified(a, len(CHARACTERS))
         except ValueError as e:
             print("\n=== INITIALIZATION ERROR ===\n{}\n".format(e))
         self.a = a
@@ -38,7 +39,7 @@ class Affine(Cipher):
         # ciphertext = ciphertext.upper()
         for char in ciphertext:
             try:
-                key = self.mult_mod_inv() * (CHARACTERS.index(char) - self.b) % len(CHARACTERS)
+                key = math_utils.mult_mod_inv(self.a, len(CHARACTERS)) * (CHARACTERS.index(char) - self.b) % len(CHARACTERS)
             except ValueError:
                 text.append(char)
             else:
@@ -46,22 +47,22 @@ class Affine(Cipher):
         return ''.join(text)
 
 
-    def mult_mod_inv(self):
-        # A rather brute-force method of finding the multiplicative modular inverse
-        factor = 1
-        mod_inv = self.a % len(CHARACTERS)
+    # def mult_mod_inv(self):
+    #     # A rather brute-force method of finding the multiplicative modular inverse
+    #     factor = 1
+    #     mod_inv = self.a % len(CHARACTERS)
 
-        while (mod_inv != 1):
-            factor += 1 
-            mod_inv = self.a * factor % len(CHARACTERS)
-        return factor
+    #     while (mod_inv != 1):
+    #         factor += 1 
+    #         mod_inv = self.a * factor % len(CHARACTERS)
+    #     return factor
 
     
-    def coprimes_identified(self, a):
-        larger_number = a if a > len(CHARACTERS) else len(CHARACTERS)
+    # def coprimes_identified(self, a):
+    #     larger_number = a if a > len(CHARACTERS) else len(CHARACTERS)
 
-        for divisor in range(2, int(larger_number/2)):
-            if a % divisor == 0 and len(CHARACTERS) % divisor == 0:
-                raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
-                    .format(divisor, len(CHARACTERS)))
-        return False
+    #     for divisor in range(2, int(larger_number/2)):
+    #         if a % divisor == 0 and len(CHARACTERS) % divisor == 0:
+    #             raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
+    #                 .format(divisor, len(CHARACTERS)))
+    #     return False
