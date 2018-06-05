@@ -10,18 +10,14 @@ class Affine(Cipher):
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
         
-        # TODO: a and m must be coprimes, meaning that they cannot be the same number
-        #   or have any common factor greater than 1.
+        # a and m must be coprimes, 
+        #   meaning that they cannot have any common factor greater than 1.
         if self.coprimes_identified(a):
             raise ValueError("'a' and {} cannot be coprimes.  Please enter a different value for 'a'."
                 .format(len(LETTERS)))
         self.a = a
         self.b = b
-
-        # TODO: Take one of these out
-        # self.letters = {number: letter for number, letter in zip(range(0, 26),string.ascii_uppercase)}
-        # self.coder = {letter: (self.a * LETTERS.index(letter) + self.b) % len(LETTERS) for letter in LETTERS}
-
+        
 
     def encrypt(self, text):
         ciphertext = []
