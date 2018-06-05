@@ -8,7 +8,9 @@ class Atbash(Affine):
         self.CHARACTERS = string.ascii_uppercase
         self.a = 25
 
-    # Atbash is only designed to function
+    # Atbash is only designed to function with a single set of letters
+    #   and should not be case-sensitive.
+    # So I'm calling the superclass with a cast to uppercase
     def encrypt(self, text):
         return super().encrypt(text.upper())
 
