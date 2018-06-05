@@ -12,9 +12,10 @@ class Affine(Cipher):
         
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
-        if self.coprimes_identified(a):
-            raise ValueError("'a' and {} must be coprimes.  Please enter a different value for 'a'."
-                .format(len(CHARACTERS)))
+        try:
+            self.coprimes_identified(a)
+        except ValueError as e:
+            print("\n=== INITIALIZATION ERROR ===\n{}\n".format(e))
         self.a = a
         self.b = b
 
@@ -61,6 +62,6 @@ class Affine(Cipher):
 
         for divisor in range(2, int(larger_number/2)):
             if a % divisor == 0 and len(CHARACTERS) % divisor == 0:
-                print("{} found to be a common divisor".format(divisor))
-                return True
+                raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
+                    .format(divisor, len(CHARACTERS)))
         return False
