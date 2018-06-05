@@ -4,11 +4,11 @@ import string
 from ciphers import Cipher
 
 
-primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+# primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
 LETTERS = string.ascii_uppercase
 
 class Affine(Cipher):
-    def __init__(self, a=5, b=random.choice(primes)):
+    def __init__(self, a=5, b=random.randrange(26)):
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
         
