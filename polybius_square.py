@@ -21,13 +21,10 @@ from ciphers import Cipher
 class Polybius(Cipher):
     def __init__(self):
         self.CHARACTERS = list(char for char in string.punctuation + string.ascii_lowercase + string.digits + string.ascii_uppercase + string.whitespace)
-        # self.CHARACTERS = list(char for char in self.CHARACTERS)
         shuffle(self.CHARACTERS)
 
     def encrypt(self, text):
         ciphertext = []
-        # Convert the text in put to uppercase
-        # text = text.upper()
         for char in text:
             try:
                 index = self.CHARACTERS.index(char)
@@ -46,6 +43,8 @@ class Polybius(Cipher):
         for i in i_range:
             try:
                 index = int(ciphertext[i]) * 10 + int(ciphertext[i+1])
+            # This was added before the full character list was implemented,
+            #   but it should probably stay for edge cases
             except ValueError:
                 text.append(ciphertext[i])
             else:
