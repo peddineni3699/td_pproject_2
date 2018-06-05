@@ -10,7 +10,7 @@ def mult_mod_inv(inverse_target, mod):
 
 
 def coprimes_identified(num1, num2):
-    larger_number = num1 if num1 > num2 else num1
+    larger_number = num1 if num1 > num2 else num2
 
     for divisor in range(2, int(larger_number/2)):
         if num1 % divisor == 0 and num2 % divisor == 0:
