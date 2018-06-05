@@ -4,9 +4,9 @@ from affine import Affine
 
 class Atbash(Affine):
     def __init__(self):
-        super().__init__(b=51)
+        super().__init__(b=25)
         self.CHARACTERS = string.ascii_uppercase
-        self.a = 51
+        self.a = 25
 
     # Atbash is only designed to function
     def encrypt(self, text):
