@@ -5,6 +5,7 @@ from ciphers import Cipher
 
 
 primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+LETTERS = string.ascii_uppercase
 
 class Affine(Cipher):
     def __init__(self):
@@ -13,7 +14,48 @@ class Affine(Cipher):
         
         # a and b must be coprimes, meaning that they cannot be the same number
         #   Popping guarantees that the same number cannot be randomly chosen
-        self.a = primes.pop(random.randrange(len(primes)))
+        # self.a = primes.pop(random.randrange(len(primes)))
+        self.a = 25
         self.b = random.choice(primes)
+        self.b = 25
 
-        self.letters = {letter: number for letter, number in zip(string.ascii_uppercase, range(0, 26))}
+        # TODO: Take one of these out
+        # self.letters = {number: letter for number, letter in zip(range(0, 26),string.ascii_uppercase)}
+        self.coder = {letter: (self.a * LETTERS.index(letter) + self.b) % len(LETTERS) for letter in LETTERS}
+        
+
+    def encrypt(self, text):
+        output = []
+        text = text.upper()
+        for char in text:
+            try:
+                key = (self.a * LETTERS.index(char) + self.b) % len(LETTERS)
+                print("Key = {}".format(key))
+                output.append(LETTERS[key])
+            except ValueError:
+                output.append(char)
+        return ''.join(output)
+
+
+    def decrypt(self, text):
+        output = []
+        text = text.upper()
+        for char in text:
+            try:
+                key = self.mult_mod_inv() * (LETTERS.index(char) - self.b) % len(LETTERS)
+                print("Key = {}".format(key))
+                output.append(LETTERS[key])
+            except ValueError:
+                output.append(char)
+        return ''.join(output)
+
+
+    def mult_mod_inv(self):
+        factor = 1
+        mod_inv = self.a % len(LETTERS)
+
+        while (mod_inv != 1):
+            factor += 1 
+            mod_inv = self.a * factor % len(LETTERS)
+
+        return factor
