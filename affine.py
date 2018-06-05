@@ -29,10 +29,11 @@ class Affine(Cipher):
         for char in text:
             try:
                 key = (self.a * LETTERS.index(char) + self.b) % len(LETTERS)
-                print("Key = {}".format(key))
-                output.append(LETTERS[key])
             except ValueError:
                 output.append(char)
+            else:
+                print("Key = {}".format(key))
+                output.append(LETTERS[key])
         return ''.join(output)
 
 
@@ -42,10 +43,11 @@ class Affine(Cipher):
         for char in text:
             try:
                 key = self.mult_mod_inv() * (LETTERS.index(char) - self.b) % len(LETTERS)
-                print("Key = {}".format(key))
-                output.append(LETTERS[key])
             except ValueError:
                 output.append(char)
+            else:
+                print("Key = {}".format(key))
+                output.append(LETTERS[key])
         return ''.join(output)
 
 
