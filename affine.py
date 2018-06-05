@@ -10,7 +10,7 @@ class Affine(Cipher):
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
         
-        # a and m must be coprimes, meaning that they cannot be the same number
+        # TODO: a and m must be coprimes, meaning that they cannot be the same number
         #   or have any common factor greater than 1.
         self.a = a
         self.b = b
