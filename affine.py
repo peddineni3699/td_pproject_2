@@ -6,7 +6,7 @@ from ciphers import Cipher
 from random import shuffle
 
 class Affine(Cipher):
-    def __init__(self, a=5, b=random.randrange(100)):
+    def __init__(self, a=19, b=random.randrange(100)):
         self.CHARACTERS = list(
             char for char in string.punctuation 
             + string.ascii_lowercase 
