@@ -30,7 +30,6 @@ class Affine(Cipher):
             except ValueError:
                 ciphertext.append(char)
             else:
-                print("Key = {}".format(key))
                 ciphertext.append(LETTERS[key])
         return ''.join(ciphertext)
 
@@ -44,12 +43,12 @@ class Affine(Cipher):
             except ValueError:
                 text.append(char)
             else:
-                print("Key = {}".format(key))
                 text.append(LETTERS[key])
         return ''.join(text)
 
 
     def mult_mod_inv(self):
+        # A rather brute-force method of finding the multiplicative modular inverse
         factor = 1
         mod_inv = self.a % len(LETTERS)
 
