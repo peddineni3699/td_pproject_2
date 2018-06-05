@@ -1,3 +1,4 @@
+from random import shuffle
 import string
 
 from ciphers import Cipher
@@ -9,13 +10,19 @@ from ciphers import Cipher
 #   Punctuation     32 characters
 #   Whitespace       6 characters
 #
-# This allows the use of a 10x10 Polybius Square
-CHARACTERS = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation + string.whitespace
+# This allows the use of a 10x10 Polybius Square, with indexes 00 - 99
+#
+# Punctuation is used as the first set populated to the squared
+#   in order to prevent numbers or letters from being mapped to
+#   their logical numerical equivalent.
+
+
 
 class Polybius(Cipher):
     def __init__(self):
-        # This cipher does not require a key
-        pass
+        self.CHARACTERS = string.punctuation + string.ascii_lowercase + string.digits + string.ascii_uppercase + string.whitespace
+        self.CHARACTERS = list(char for char in self.CHARACTERS)
+        shuffle(self.CHARACTERS)
 
     def encrypt(self, text):
         ciphertext = []
@@ -23,7 +30,7 @@ class Polybius(Cipher):
         text = text.upper()
         for char in text:
             try:
-                index = CHARACTERS.index(char)
+                index = self.CHARACTERS.index(char)
             except ValueError:
                 ciphertext.append(char)
             else:
@@ -42,7 +49,7 @@ class Polybius(Cipher):
             except ValueError:
                 text.append(ciphertext[i])
             else:
-                text.append(CHARACTERS[index])   
+                text.append(self.CHARACTERS[index])   
                 # Since the ciphertext is grouped into two letters,
                 #   a valid decoded character should advance the iterator by 2
                 next(i_range)    
