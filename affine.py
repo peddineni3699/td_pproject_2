@@ -1,12 +1,12 @@
 import math_utils
-import random
 import string
 
 from ciphers import Cipher
 from random import shuffle
+from random import randrange
 
 class Affine(Cipher):
-    def __init__(self, a=19, b=random.randrange(100)):
+    def __init__(self, a=19, b=randrange(100)):
         self.CHARACTERS = list(
             char for char in string.punctuation 
             + string.ascii_lowercase 
