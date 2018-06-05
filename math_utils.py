@@ -9,6 +9,7 @@ def mult_mod_inv(inverse_target, mod):
     return factor
 
 
+# TODO: Could probably use a rename/refactor, since it's now a standalone utility
 def coprimes_identified(num1, num2):
     larger_number = num1 if num1 > num2 else num2
 
