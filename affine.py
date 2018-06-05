@@ -12,6 +12,9 @@ class Affine(Cipher):
         
         # TODO: a and m must be coprimes, meaning that they cannot be the same number
         #   or have any common factor greater than 1.
+        if self.coprimes_identified(a):
+            raise ValueError("'a' and {} cannot be coprimes.  Please enter a different value for 'a'."
+                .format(len(LETTERS)))
         self.a = a
         self.b = b
 
@@ -55,3 +58,14 @@ class Affine(Cipher):
             factor += 1 
             mod_inv = self.a * factor % len(LETTERS)
         return factor
+
+    
+    def coprimes_identified(self, a):
+        ordered_set = {a, len(LETTERS)}
+        smaller_number = ordered_set.pop()
+        larger_number = ordered_set.pop()
+
+        for _ in range(int(larger_number/2)):
+            if larger_number % smaller_number == 0:
+                return True
+            return False
