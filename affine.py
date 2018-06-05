@@ -3,18 +3,24 @@ import random
 import string
 
 from ciphers import Cipher
-
-CHARACTERS = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation + string.whitespace
+from random import shuffle
 
 class Affine(Cipher):
     def __init__(self, a=5, b=random.randrange(100)):
+        self.CHARACTERS = list(
+            char for char in string.punctuation 
+            + string.ascii_lowercase 
+            + string.digits 
+            + string.ascii_uppercase 
+            + string.whitespace)
+        shuffle(self.CHARACTERS)
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
         
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
         try:
-            math_utils.coprimes_identified(a, len(CHARACTERS))
+            math_utils.coprimes_identified(a, len(self.CHARACTERS))
         except ValueError as e:
             print("\n=== INITIALIZATION ERROR ===\n{}\n".format(e))
         self.a = a
@@ -26,11 +32,11 @@ class Affine(Cipher):
         # text = text.upper()
         for char in text:
             try:
-                key = (self.a * CHARACTERS.index(char) + self.b) % len(CHARACTERS)
+                key = (self.a * self.CHARACTERS.index(char) + self.b) % len(self.CHARACTERS)
             except ValueError:
                 ciphertext.append(char)
             else:
-                ciphertext.append(CHARACTERS[key])
+                ciphertext.append(self.CHARACTERS[key])
         return ''.join(ciphertext)
 
 
@@ -39,11 +45,11 @@ class Affine(Cipher):
         # ciphertext = ciphertext.upper()
         for char in ciphertext:
             try:
-                key = math_utils.mult_mod_inv(self.a, len(CHARACTERS)) * (CHARACTERS.index(char) - self.b) % len(CHARACTERS)
+                key = math_utils.mult_mod_inv(self.a, len(self.CHARACTERS)) * (self.CHARACTERS.index(char) - self.b) % len(self.CHARACTERS)
             except ValueError:
                 text.append(char)
             else:
-                text.append(CHARACTERS[key])
+                text.append(self.CHARACTERS[key])
         return ''.join(text)
 
 
