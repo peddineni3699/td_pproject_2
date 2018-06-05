@@ -20,7 +20,12 @@ from ciphers import Cipher
 
 class Polybius(Cipher):
     def __init__(self):
-        self.CHARACTERS = list(char for char in string.punctuation + string.ascii_lowercase + string.digits + string.ascii_uppercase + string.whitespace)
+        self.CHARACTERS = list(
+            char for char in string.punctuation 
+            + string.ascii_lowercase 
+            + string.digits 
+            + string.ascii_uppercase 
+            + string.whitespace)
         shuffle(self.CHARACTERS)
 
     def encrypt(self, text):
