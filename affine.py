@@ -21,7 +21,7 @@ class Affine(Cipher):
         # TODO: Take one of these out
         # self.letters = {number: letter for number, letter in zip(range(0, 26),string.ascii_uppercase)}
         self.coder = {letter: (self.a * LETTERS.index(letter) + self.b) % len(LETTERS) for letter in LETTERS}
-        
+
 
     def encrypt(self, text):
         output = []
