@@ -11,14 +11,13 @@ class Affine(Cipher):
         #   in the linear function "f(x) = ax + b % m"
         
         # a and b must be coprimes, meaning that they cannot be the same number
-        #   Popping guarantees that the same number cannot be randomly chosen
-        # self.a = primes.pop(random.randrange(len(primes)))
+        #   or have any common factor greater than 1.
         self.a = a
         self.b = b
 
         # TODO: Take one of these out
         # self.letters = {number: letter for number, letter in zip(range(0, 26),string.ascii_uppercase)}
-        self.coder = {letter: (self.a * LETTERS.index(letter) + self.b) % len(LETTERS) for letter in LETTERS}
+        # self.coder = {letter: (self.a * LETTERS.index(letter) + self.b) % len(LETTERS) for letter in LETTERS}
 
 
     def encrypt(self, text):
@@ -55,5 +54,4 @@ class Affine(Cipher):
         while (mod_inv != 1):
             factor += 1 
             mod_inv = self.a * factor % len(LETTERS)
-
         return factor
