@@ -6,11 +6,11 @@ from ciphers import Cipher
 LETTERS = string.ascii_uppercase
 
 class Affine(Cipher):
-    def __init__(self, a=5, b=random.randrange(26)):
+    def __init__(self, a=5, b=random.randrange(100)):
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
         
-        # a and b must be coprimes, meaning that they cannot be the same number
+        # a and m must be coprimes, meaning that they cannot be the same number
         #   or have any common factor greater than 1.
         self.a = a
         self.b = b
