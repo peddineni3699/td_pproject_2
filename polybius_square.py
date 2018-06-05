@@ -1,7 +1,7 @@
-from random import shuffle
 import string
 
 from ciphers import Cipher
+from random import shuffle
 
 # In order to have square dimensions, 5 subsets of the string library  are utilized:
 #   Uppercase       26 characters
