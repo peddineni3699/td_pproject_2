@@ -22,31 +22,31 @@ class Affine(Cipher):
 
 
     def encrypt(self, text):
-        output = []
+        ciphertext = []
         text = text.upper()
         for char in text:
             try:
                 key = (self.a * LETTERS.index(char) + self.b) % len(LETTERS)
             except ValueError:
-                output.append(char)
+                ciphertext.append(char)
             else:
                 print("Key = {}".format(key))
-                output.append(LETTERS[key])
-        return ''.join(output)
+                ciphertext.append(LETTERS[key])
+        return ''.join(ciphertext)
 
 
     def decrypt(self, ciphertext):
-        output = []
+        text = []
         ciphertext = ciphertext.upper()
         for char in ciphertext:
             try:
                 key = self.mult_mod_inv() * (LETTERS.index(char) - self.b) % len(LETTERS)
             except ValueError:
-                output.append(char)
+                text.append(char)
             else:
                 print("Key = {}".format(key))
-                output.append(LETTERS[key])
-        return ''.join(output)
+                text.append(LETTERS[key])
+        return ''.join(text)
 
 
     def mult_mod_inv(self):
