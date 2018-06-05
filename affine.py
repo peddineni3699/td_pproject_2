@@ -19,10 +19,12 @@ class Affine(Cipher):
 
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
-        try:
-            math_utils.coprimes_identified(a, len(self.CHARACTERS))
-        except ValueError as e:
-            print("\n=== INITIALIZATION ERROR ===\n{}\n".format(e))
+        coprimes_exist = math_utils.are_coprimes(a, len(self.CHARACTERS))
+
+        if coprimes_exist:            
+            raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
+                .format(coprimes_exist, len(self.CHARACTERS)))
+            
 
         # Breaking the single variable naming rule because these are to be used
         #   in the linear function "f(x) = ax + b % m"
