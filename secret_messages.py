@@ -14,11 +14,11 @@ if __name__ == '__main__':
     try:
         int(cipher_choice)
     except ValueError:
+        # TODO: Implement this
         print("BZZT!")
     
     while(True):
         print ("The project has started!")
-
-        a = Affine()
-        print(a.a, a.b)
+        
+        # TODO: Write the UI
         break
