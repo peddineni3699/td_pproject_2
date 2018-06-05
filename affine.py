@@ -13,16 +13,19 @@ class Affine(Cipher):
             + string.digits 
             + string.ascii_uppercase 
             + string.whitespace)
+
+        # Shuffling allows each instance to have its own key
         shuffle(self.CHARACTERS)
-        # Breaking the single variable naming rule because these are to be used
-        #   in the linear function "f(x) = ax + b % m"
-        
+
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
         try:
             math_utils.coprimes_identified(a, len(self.CHARACTERS))
         except ValueError as e:
             print("\n=== INITIALIZATION ERROR ===\n{}\n".format(e))
+
+        # Breaking the single variable naming rule because these are to be used
+        #   in the linear function "f(x) = ax + b % m"
         self.a = a
         self.b = b
 
@@ -51,4 +54,3 @@ class Affine(Cipher):
             else:
                 text.append(self.CHARACTERS[key])
         return ''.join(text)
-        
