@@ -35,10 +35,10 @@ class Affine(Cipher):
         return ''.join(output)
 
 
-    def decrypt(self, text):
+    def decrypt(self, ciphertext):
         output = []
-        text = text.upper()
-        for char in text:
+        ciphertext = ciphertext.upper()
+        for char in ciphertext:
             try:
                 key = self.mult_mod_inv() * (LETTERS.index(char) - self.b) % len(LETTERS)
             except ValueError:
