@@ -24,7 +24,7 @@ if __name__ == '__main__':
                     raise ValueError("Please select one of the available options.")
             except ValueError:
                 clear_screen()
-                print ("Invalid entry.  Please select again.")
+                print ("Invalid entry.  Please select again.\n")
             else:
                 break
         return cipher_choice
