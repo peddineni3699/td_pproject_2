@@ -6,3 +6,7 @@ class Cipher:
 
     def decrypt(self):
         raise NotImplementedError()
+
+    @classmethod
+    def create(cls):
+        raise NotImplementedError()

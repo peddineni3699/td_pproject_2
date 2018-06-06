@@ -56,3 +56,7 @@ class Affine(Cipher):
             else:
                 text.append(self.CHARACTERS[key])
         return ''.join(text)
+
+    @classmethod
+    def create(cls):
+        return cls()

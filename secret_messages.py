@@ -7,7 +7,7 @@ from polybius_square import Polybius
 
 if __name__ == '__main__':
     ciphers = {key: cipher_name for key, cipher_name in 
-        zip(range(1, 5), ["Affine", "Atbash", "Caesar", "Polybius Square"])}
+        zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
 
     def clear_screen():
         os.system("cls" if os.name == "nt" else "clear")
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     def select_cipher():
         while(True):        
             for key, value in ciphers.items():
-                print("{}) {}".format(key, value))
+                print("{}) {}".format(key, value.__class__.__name__))
             
             try:
                 cipher_choice = int(input ("\nEnter a number from the options above:  "))
@@ -27,6 +27,8 @@ if __name__ == '__main__':
                 print ("Invalid entry.  Please select again.\n")
             else:
                 break
+        cipher_choice = ciphers[cipher_choice]
+        print(cipher_choice)
         return cipher_choice
 
     # Begin UI flow
@@ -35,6 +37,6 @@ if __name__ == '__main__':
     print ("Let's start by selecting a cipher to use:")
     while(True):
         selected_cipher = select_cipher()
-        print("You selected {}".format(ciphers[selected_cipher]))
+        print("You selected {}".format(selected_cipher))
         # TODO: Write the UI
         break
