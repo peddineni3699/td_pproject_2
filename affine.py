@@ -56,3 +56,12 @@ class Affine(Cipher):
             else:
                 text.append(self.CHARACTERS[key])
         return ''.join(text)
+
+    @property
+    def description(self):
+        description = ('According to Wikipedia, the Affine cipher is '
+                       'a "monoalphabetic substitution cipher, wherein each letter in an alphabet '
+                       'is mapped to its numeric equivalent, encrypted using the function [E(x)=(ax+b) mod m], '
+                       'and converted back to a letter."'
+                      )
+        return description
