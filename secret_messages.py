@@ -28,8 +28,23 @@ if __name__ == '__main__':
             else:
                 break
         cipher_choice = ciphers[cipher_choice]
-        print(cipher_choice)
+        print(cipher_choice.__class__.__name__)
         return cipher_choice
+
+    def select_encrypt_decrypt():
+        while(True):
+            print ("Choose to encrypt or decrypt:\nE) Encrypt\nD) Decrypt")
+            try:
+                choice = input (">>>  ")
+                if choice.upper() not in {"E", "D"}:
+                    raise ValueError('Enter "E" to encrypt or "D" to decrypt')
+            except ValueError:
+                clear_screen()
+                continue
+            else:
+                break
+
+        
 
     # Begin UI flow
     clear_screen()
@@ -37,6 +52,7 @@ if __name__ == '__main__':
     print ("Let's start by selecting a cipher to use:")
     while(True):
         selected_cipher = select_cipher()
-        print("You selected {}".format(selected_cipher))
+        print("You selected {}".format(selected_cipher.__class__.__name__))
+        select_encrypt_decrypt()
         # TODO: Write the UI
         break
