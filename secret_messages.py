@@ -9,6 +9,7 @@ if __name__ == '__main__':
     ciphers = {key: cipher_name for key, cipher_name in 
         zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
 
+
     def clear_screen():
         os.system("cls" if os.name == "nt" else "clear")
 
@@ -23,13 +24,11 @@ if __name__ == '__main__':
                 if cipher_choice not in ciphers.keys():
                     raise ValueError("Please select one of the available options.")
             except ValueError:
-                clear_screen()
+                # clear_screen()
                 print ("Invalid entry.  Please select again.\n")
             else:
                 break
-        cipher_choice = ciphers[cipher_choice]
-        print(cipher_choice.__class__.__name__)
-        return cipher_choice
+        return ciphers[cipher_choice]
 
     def select_encrypt_decrypt():
         while(True):
@@ -39,7 +38,7 @@ if __name__ == '__main__':
                 if choice.upper() not in {"E", "D"}:
                     raise ValueError('Enter "E" to encrypt or "D" to decrypt')
             except ValueError:
-                clear_screen()
+                # clear_screen()
                 continue
             else:
                 break
