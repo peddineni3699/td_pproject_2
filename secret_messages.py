@@ -8,6 +8,8 @@ from polybius_square import Polybius
 if __name__ == '__main__':
     ciphers = {key: cipher_name for key, cipher_name in 
         zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
+    OPERATION_ENCRYPT = "ENCRYPT"
+    OPERATION_DECRYPT = "DECRYPT"
 
 
     def clear_screen():
@@ -32,26 +34,27 @@ if __name__ == '__main__':
 
     def select_encrypt_decrypt():
         while(True):
-            print ("Choose to encrypt or decrypt:\nE) Encrypt\nD) Decrypt")
+            print ("Which operation would you like to perform?\nE) Encrypt\nD) Decrypt")
             try:
-                choice = input (">>>  ")
-                if choice.upper() not in {"E", "D"}:
+                choice = input (">>>  ").upper()
+                if choice not in {"E", "D"}:
                     raise ValueError('Enter "E" to encrypt or "D" to decrypt')
             except ValueError:
                 # clear_screen()
                 continue
             else:
-                break
-
+                return OPERATION_ENCRYPT if choice == "E" else OPERATION_DECRYPT
         
 
     # Begin UI flow
     clear_screen()
     print ("Welcome to the Cipher Machine!\n")
-    print ("Let's start by selecting a cipher to use:")
     while(True):
+        selected_operation = select_encrypt_decrypt()
+        print("\n{} from which cipher?".format(selected_operation))
         selected_cipher = select_cipher()
+        print(selected_cipher.description)
         print("You selected {}".format(selected_cipher.__class__.__name__))
-        select_encrypt_decrypt()
+        
         # TODO: Write the UI
         break
