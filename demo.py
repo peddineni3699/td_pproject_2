@@ -46,7 +46,9 @@ if __name__ == '__main__':
     # Begin UI flow
     clear_screen()
     print ("Welcome to the Cipher Machine!\n")
-    print ("Let's start by selecting a cipher to use:")
+    print ("This demo will allow for a single encryption & decryption "
+            + "operation for each of the implemented ciphers.\n")
+    
 
     print ("=== Caesar sample ===")
     c = Caesar()
