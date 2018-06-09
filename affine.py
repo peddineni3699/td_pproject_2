@@ -10,22 +10,27 @@ from random import shuffle
 from random import randrange
 
 class Affine(Cipher):
-    def __init__(self, a=19, b=randrange(100)):
+    def __init__(self, a=23, b=randrange(100)):
         self.characters = list(
             self.characters
             + string.ascii_lowercase
             + string.digits
             + string.punctuation
-            + string.whitespace
+            + " "
         )
 
         # a and m must be coprimes, 
         #   meaning that they cannot have any common factor greater than 1.
         coprimes_exist = math_utils.are_coprimes(a, len(self.characters))
 
-        if coprimes_exist:            
-            raise ValueError("{} found to be a common divisor.\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'."
-                .format(coprimes_exist, len(self.characters)))
+        try:
+            if coprimes_exist:            
+                raise ValueError('{} found to be a common divisor.\n'
+                                '"a" and {} must be coprimes.\n'
+                                'Please enter a different value for "a"'.format(coprimes_exist, len(self.characters)))
+        except ValueError:
+            print("Could not initialize Affine cipher.  {} found to be a common divisor.".format(coprimes_exist))
+            print("\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'.".format(len(self.characters)))
             
 
         # Breaking the single variable naming rule because these are to be used
