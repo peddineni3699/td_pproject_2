@@ -10,7 +10,7 @@ from random import shuffle
 from random import randrange
 
 class Affine(Cipher):
-    def __init__(self, a=23, b=randrange(100)):
+    def __init__(self, a=23, b=50):
         self.characters = list(
             self.characters
             + string.ascii_lowercase
