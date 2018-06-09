@@ -75,5 +75,3 @@ if __name__ == '__main__':
         else:
             decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
             print("---> {}\n".format(decrypted_text))
-        input("Press ENTER to continue...")
-        clear_screen()
