@@ -7,7 +7,7 @@ from polybius_square import Polybius
 from sys import exit
 
 if __name__ == '__main__':
-    ciphers = {key: cipher_name for key, cipher_name in 
+    ciphers = {key: cipher for key, cipher in 
         zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
     OPERATION_ENCRYPT = "ENCRYPT"
     OPERATION_DECRYPT = "DECRYPT"
@@ -30,11 +30,12 @@ if __name__ == '__main__':
             for key, value in ciphers.items():
                 print("{}) {}".format(key, value.__class__.__name__))
             
-            cipher_choice = input("\nEnter a number from the options above:  ")
+            cipher_choice = input("\>>>  ")
 
             try:
                 exit_check(cipher_choice.upper())
-                if int(cipher_choice) not in ciphers.keys():
+                cipher_choice = int(cipher_choice)
+                if cipher_choice not in ciphers.keys():
                     exit_check(cipher_choice)
                     raise ValueError("Entered value does not exist in cipher list")
             except ValueError:
@@ -67,8 +68,10 @@ if __name__ == '__main__':
         selected_operation = select_encrypt_decrypt()
         print("\n{} from which cipher?".format(selected_operation))
         selected_cipher = select_cipher()
-        print(selected_cipher.description)
-        print("You selected {}".format(selected_cipher.__class__.__name__))
         
-        # TODO: Write the UI
-        break
+        if selected_operation == OPERATION_ENCRYPT:
+            encrypted_text = selected_cipher.encrypt(input("Enter text to encrypt:  "))
+            print("---> {}".format(encrypted_text))
+        else:
+            decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
+            print("---> {}\n".format(decrypted_text))
