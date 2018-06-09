@@ -14,21 +14,20 @@ from random import shuffle
 
 class Polybius(Cipher):
     def __init__(self):
-        self.CHARACTERS = list(
-            char for char in string.punctuation 
-            + string.ascii_lowercase 
-            + string.digits 
-            + string.ascii_uppercase 
-            + string.whitespace)
-        
-        # Shuffling allows each instance to have its own key
-        shuffle(self.CHARACTERS)
+        self.characters = list(
+            self.characters
+            + string.ascii_lowercase
+            + string.digits
+            + string.punctuation
+            + string.whitespace
+        )
+
 
     def encrypt(self, text):
         ciphertext = []
         for char in text:
             try:
-                index = self.CHARACTERS.index(char)
+                index = self.characters.index(char)
             except ValueError:
                 ciphertext.append(char)
             else:
@@ -36,6 +35,7 @@ class Polybius(Cipher):
                 digit2 = index % 10
                 ciphertext.append(str(digit1) + str(digit2))
         return " ".join(ciphertext)
+
 
     def decrypt(self, ciphertext):
         ciphertext = ciphertext.replace(" ", "")
@@ -49,7 +49,7 @@ class Polybius(Cipher):
             except ValueError:
                 text.append(ciphertext[i])
             else:
-                text.append(self.CHARACTERS[index])   
+                text.append(self.characters[index])   
                 # Since the ciphertext is grouped into two letters,
                 #   a valid decoded character should advance the iterator by 2
                 next(i_range)    
