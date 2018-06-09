@@ -30,7 +30,7 @@ if __name__ == '__main__':
             for key, value in ciphers.items():
                 print("{}) {}".format(key, value.__class__.__name__))
             
-            cipher_choice = input("\>>>  ")
+            cipher_choice = input(">>>  ")
 
             try:
                 exit_check(cipher_choice.upper())
@@ -75,3 +75,5 @@ if __name__ == '__main__':
         else:
             decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
             print("---> {}\n".format(decrypted_text))
+        input("Press ENTER to continue...")
+        clear_screen()
