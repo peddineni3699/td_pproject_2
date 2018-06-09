@@ -39,6 +39,9 @@ class Polybius(Cipher):
 
     def decrypt(self, ciphertext):
         ciphertext = ciphertext.replace(" ", "")
+        if len(ciphertext) % 2 == 1:
+            raise ValueError("Could not parse input.  "
+                             "Expected an even number of digits, but received an odd number.")
         text = []
         i_range = iter(range(0, len(ciphertext)))
         for i in i_range:
