@@ -39,6 +39,10 @@ class Polybius(Cipher):
 
     def decrypt(self, ciphertext):
         ciphertext = ciphertext.replace(" ", "")
+        try:
+            int(ciphertext)
+        except ValueError:
+            return "Could not parse input.  Polybius Square decryption takes only numbers and spaces."
         if len(ciphertext) % 2 == 1:
             raise ValueError("Could not parse input.  "
                              "Expected an even number of digits, but received an odd number.")
