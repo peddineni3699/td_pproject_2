@@ -71,7 +71,13 @@ if __name__ == '__main__':
         
         if selected_operation == OPERATION_ENCRYPT:
             encrypted_text = selected_cipher.encrypt(input("Enter text to encrypt:  "))
-            print("---> {}".format(encrypted_text))
+            print("---> {}\n".format(encrypted_text))
         else:
-            decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
+            while (True):
+                try:
+                    decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
+                except ValueError as e:
+                    print("{}\nPlease try again.\n".format(e))
+                else:
+                    break
             print("---> {}\n".format(decrypted_text))
