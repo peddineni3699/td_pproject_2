@@ -59,9 +59,13 @@ if __name__ == '__main__':
                 return OPERATION_ENCRYPT if operation_choice == "E" else OPERATION_DECRYPT
 
     def prompt_for_affine_variables(cipher):
-        pass
-        # cipher.a = 7
-        # cipher.b = 50
+        while(True):
+            try:
+                cipher.set_a(int(input("Enter a value for 'a'\n>>>  ")))
+            except ValueError as e:
+                print(e)
+            else:
+                break
         
 
     # Begin UI flow
