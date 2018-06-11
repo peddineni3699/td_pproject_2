@@ -57,6 +57,11 @@ if __name__ == '__main__':
                 continue
             else:
                 return OPERATION_ENCRYPT if operation_choice == "E" else OPERATION_DECRYPT
+
+    def prompt_for_affine_variables(cipher):
+        pass
+        # cipher.a = 7
+        # cipher.b = 50
         
 
     # Begin UI flow
@@ -68,6 +73,11 @@ if __name__ == '__main__':
         selected_operation = select_encrypt_decrypt()
         print("\n{} from which cipher?".format(selected_operation))
         selected_cipher = select_cipher()
+
+        if selected_cipher == ciphers[1]:
+            prompt_for_affine_variables(selected_cipher)
+            print(selected_cipher.a)
+            print(selected_cipher.b)
         
         if selected_operation == OPERATION_ENCRYPT:
             encrypted_text = selected_cipher.encrypt(input("Enter text to encrypt:  "))
