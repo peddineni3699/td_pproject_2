@@ -65,6 +65,20 @@ class Affine(Cipher):
         return ''.join(text)
 
 
+    def set_a(self, number):
+        try:
+            coprimes_exist = math_utils.are_coprimes(number, len(self.characters))
+        except ValueError:
+            raise ValueError("Invalid entry for 'a'")
+        else:
+            if coprimes_exist:            
+                raise ValueError('{} found to be a common divisor.\n'
+                                '"a" and {} must be coprimes.\n'
+                                'Please enter a different value for "a"'.format(coprimes_exist, len(self.characters)))
+            else:
+                self.a = number
+
+
     @property
     def description(self):
         description = ('According to Wikipedia, the Affine cipher is '
