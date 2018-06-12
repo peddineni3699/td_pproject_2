@@ -33,10 +33,15 @@ class Affine(Cipher):
             if coprimes_exist:            
                 raise ValueError('{} found to be a common divisor.\n'
                                 '"a" and {} must be coprimes.\n'
-                                'Please enter a different value for "a"'.format(coprimes_exist, len(self.characters)))
+                                'Please enter a different value for "a"'
+                                .format(coprimes_exist, len(self.characters)))
         except ValueError:
-            print("Could not initialize Affine cipher.  {} found to be a common divisor.".format(coprimes_exist))
-            print("\n'a' and {} must be coprimes.\nPlease enter a different value for 'a'.".format(len(self.characters)))
+            print("Could not initialize Affine cipher.  "
+                  "{} found to be a common divisor."
+                  .format(coprimes_exist))
+            print("\n'a' and {} must be coprimes.\n"
+                  "Please enter a different value for 'a'."
+                  .format(len(self.characters)))
             
 
         # Breaking the single variable naming rule because these are to be used
@@ -87,7 +92,8 @@ class Affine(Cipher):
             if coprimes_exist:            
                 raise IOError('{} found to be a common divisor.\n'
                                 '"a" and {} must be coprimes.\n'
-                                'Please enter a different value for "a"'.format(coprimes_exist, len(self.characters)))
+                                'Please enter a different value for "a"'
+                                .format(coprimes_exist, len(self.characters)))
             else:
                 self.a = number
 
@@ -134,7 +140,8 @@ class Affine(Cipher):
         """A brief description of the Affine cipher"""
         return ('According to Wikipedia, the Affine cipher is '
                 'a "monoalphabetic substitution cipher, wherein each letter in an alphabet '
-                'is mapped to its numeric equivalent, encrypted using the function [E(x)=(ax+b) mod m], '
+                'is mapped to its numeric equivalent, '
+                'encrypted using the function [E(x)=(ax+b) mod m], '
                 'and converted back to a letter."\n'
                 'The characters supported by the implementation in this program include:\n'
                 '-- uppercase letters: {}\n'
