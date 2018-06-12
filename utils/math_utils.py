@@ -1,3 +1,7 @@
+# Aaron Pope
+# 05/22/2018
+# Treehouse TechDegree - Python, Unit 2: Secret Messages
+
 def mult_mod_inv(a, mod):
     """Returns the multiplicative modular inverse of 'a' under modulo 'mod'"""
     # A rather brute-force method of finding the multiplicative modular inverse
