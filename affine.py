@@ -25,11 +25,11 @@ class Affine(Cipher):
             + " "
         )
 
-        # a and m must be coprimes, 
-        #   meaning that they cannot have any common factor greater than 1.
-        coprimes_exist = math_utils.are_coprimes(a, len(self.characters))
-
         try:
+             # a and m must be coprimes, 
+            #   meaning that they cannot have any common factor greater than 1.
+            # Storing in variable to use in error message
+            coprimes_exist = math_utils.are_coprimes(a, len(self.characters))
             if coprimes_exist:            
                 raise ValueError('{} found to be a common divisor.\n'
                                 '"a" and {} must be coprimes.\n'
@@ -40,7 +40,7 @@ class Affine(Cipher):
             
 
         # Breaking the single variable naming rule because these are to be used
-        #   in the linear function "f(x) = ax + b % m"
+        #   in the linear function "f(x) = (ax + b) % m"
         self.a = a
         self.b = b
 
@@ -52,6 +52,8 @@ class Affine(Cipher):
         for char in text:
             try:
                 key = (self.a * self.characters.index(char) + self.b) % len(self.characters)
+            # If character is not in set for cipher,
+            #   directly append it without transformation
             except ValueError:
                 ciphertext.append(char)
             else:
