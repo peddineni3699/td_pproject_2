@@ -68,6 +68,8 @@ class Affine(Cipher):
         for char in ciphertext:
             try:
                 key = math_utils.mult_mod_inv(self.a, len(self.characters)) * (self.characters.index(char) - self.b) % len(self.characters)
+            # If character is not in set for cipher,
+            #   directly append it without transformation
             except ValueError:
                 text.append(char)
             else:

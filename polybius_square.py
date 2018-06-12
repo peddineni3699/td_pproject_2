@@ -14,6 +14,9 @@ from random import shuffle
 
 class Polybius(Cipher):
     def __init__(self):
+        """Initializes a new Atbash instance with default values"""
+
+        # This implementation supports a square of size 10 x 10
         self.characters = list(
             self.characters
             + string.ascii_lowercase
@@ -24,10 +27,13 @@ class Polybius(Cipher):
 
 
     def encrypt(self, text):
+        """Returns a string of encrypted text"""
         ciphertext = []
         for char in text:
             try:
                 index = self.characters.index(char)
+            # If character is not in set for cipher,
+            #   directly append it without transformation
             except ValueError:
                 ciphertext.append(char)
             else:
@@ -38,9 +44,17 @@ class Polybius(Cipher):
 
 
     def decrypt(self, ciphertext):
+        """Returns a string of decrypted text"""
+
+        # Remove whitespace from input text.
+        #   Allowing whitespace in the entry makes
+        #   it easer for useres to be able to parse
+        #   potentially long strings of numbers.
         ciphertext = ciphertext.replace(" ", "")
         # Check to ensure that only numbers have been passed,
         try:
+            # Polybius Square only takes numbers.
+            #   If any other characters are found, raise an error
             int(ciphertext)
         except ValueError:
             raise ValueError("Invalid input.  "
@@ -54,6 +68,7 @@ class Polybius(Cipher):
             raise ValueError("Could not parse input.  "
                              "Expected an even number of digits, but received an odd number.")
         text = []
+        # At this point, the input has been sanitized and can be safely decrypted.
         i_range = iter(range(0, len(ciphertext)))
         for i in i_range:
             try:

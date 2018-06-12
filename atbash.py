@@ -3,7 +3,14 @@ import string
 from affine import Affine
 
 class Atbash(Affine):
+    """A subset of the Affine cipher, using uppercase letters only"""
     def __init__(self):
+        """Initializes a new Atbash instance with default values
+        
+        a: Magnitude of cipher shift
+        b: Offset of cipher shift
+        Defaults: a=23, b=50
+        """
         super().__init__(b=25)
         self.characters = string.ascii_uppercase
         self.a = 25
