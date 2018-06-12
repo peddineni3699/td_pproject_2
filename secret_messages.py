@@ -91,9 +91,9 @@ if __name__ == '__main__':
 
     # Begin UI flow
     clear_screen()
-    print ("Welcome to the Cipher Machine!\n"
-           "Follow the prompts to encrypt or decrypt messages."
-           "You can always enter 'Q' or 'quit' to leave the program.\n\n")
+    print ("""Welcome to the Cipher Machine!
+Follow the prompts to encrypt or decrypt messages.
+You can always enter 'Q' or 'quit' to leave the program.\n\n""")
     while(True):
         selected_operation = select_encrypt_decrypt()
         print("\n{} from which cipher?".format(selected_operation))
