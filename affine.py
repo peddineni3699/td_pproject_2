@@ -11,6 +11,12 @@ from random import randrange
 
 class Affine(Cipher):
     def __init__(self, a=23, b=50):
+        """Initializes a new Affine instance with default values
+        
+        a: Magnitude of cipher shift
+        b: Offset of cipher shift
+        Defaults: a=23, b=50
+        """
         self.characters = list(
             self.characters
             + string.ascii_lowercase
@@ -40,6 +46,7 @@ class Affine(Cipher):
 
 
     def encrypt(self, text):
+        """Returns a string of encrypted text"""
         ciphertext = []
         # text = text.upper()
         for char in text:
@@ -53,6 +60,7 @@ class Affine(Cipher):
 
 
     def decrypt(self, ciphertext):
+        """Returns a string of decrypted text"""
         text = []
         # ciphertext = ciphertext.upper()
         for char in ciphertext:
@@ -66,6 +74,7 @@ class Affine(Cipher):
 
 
     def set_a(self, number):
+        """Safely sets variable 'a'"""
         try:
             coprimes_exist = math_utils.are_coprimes(number, len(self.characters))
         except ValueError:
@@ -80,6 +89,7 @@ class Affine(Cipher):
 
     
     def prompt_for_variables(self):
+        """Allows the user to set the 'a' and 'b' variables through command line"""
         print("\nEnter key values for 'a' and 'b'")
         print("If you want to use the default/current values, just press ENTER for each")
         while(True):
@@ -117,9 +127,19 @@ class Affine(Cipher):
 
     @property
     def description(self):
-        description = ('According to Wikipedia, the Affine cipher is '
-                       'a "monoalphabetic substitution cipher, wherein each letter in an alphabet '
-                       'is mapped to its numeric equivalent, encrypted using the function [E(x)=(ax+b) mod m], '
-                       'and converted back to a letter."'
-                      )
-        return description
+        """A brief description of the Affine cipher"""
+        return ('According to Wikipedia, the Affine cipher is '
+                'a "monoalphabetic substitution cipher, wherein each letter in an alphabet '
+                'is mapped to its numeric equivalent, encrypted using the function [E(x)=(ax+b) mod m], '
+                'and converted back to a letter."\n'
+                'The characters supported by the implementation in this program include:\n'
+                '-- uppercase letters: {}\n'
+                '-- lowercase letters: {}\n'
+                '-- digits: {}\n'
+                '-- punctuation: {}\n'
+                '-- blank space: " "\n'
+                .format(string.ascii_uppercase,
+                        string.ascii_lowercase,
+                        string.digits,
+                        string.punctuation)
+                )
