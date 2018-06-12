@@ -72,11 +72,47 @@ class Affine(Cipher):
             raise ValueError("Invalid entry for 'a'")
         else:
             if coprimes_exist:            
-                raise ValueError('{} found to be a common divisor.\n'
+                raise IOError('{} found to be a common divisor.\n'
                                 '"a" and {} must be coprimes.\n'
                                 'Please enter a different value for "a"'.format(coprimes_exist, len(self.characters)))
             else:
                 self.a = number
+
+    
+    def prompt_for_variables(self):
+        print("\nEnter key values for 'a' and 'b'")
+        print("If you want to use the default/current values, just press ENTER for each")
+        while(True):
+            try:
+                a_input = (input("\nEnter a value for 'a'\n"
+                                 "CURRENT VALUE: {}\n>>>  ".format(self.a)))
+                # See if a value was entered
+                if a_input:
+                    self.set_a(int(a_input))
+                # Otherwise, use the current value
+                else:
+                    break
+            except ValueError:
+                print("'a' must be an integer")
+            except IOError as e:
+                print(e)
+            else:
+                break
+
+        while(True):
+            try:
+                b_input = (input("\nEnter a value for 'b'\n"
+                                 "CURRENT VALUE: {}\n>>>  ".format(self.b)))
+                # See if a value was entered
+                if b_input:
+                    self.b = int(b_input)
+                # Otherwise, use the current value
+                else:
+                    break
+            except ValueError:
+                print("'b' must be an integer")
+            else:
+                break
 
 
     @property

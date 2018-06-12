@@ -1,4 +1,5 @@
 import os
+import utils
 
 from atbash import Atbash
 from affine import Affine
@@ -12,18 +13,6 @@ if __name__ == '__main__':
         zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
     OPERATION_ENCRYPT = "ENCRYPT"
     OPERATION_DECRYPT = "DECRYPT"
-    EXIT_ARGS = {"Q", "QUIT"}
-
-
-    def clear_screen():
-        os.system("cls" if os.name == "nt" else "clear")
-
-    def exit_check(choice):
-        if choice in EXIT_ARGS:
-            exit()
-
-    def print_invalid_entry_message():
-        print("Invalid entry.  Please select again.\n")
 
 
     def select_cipher():
@@ -34,16 +23,17 @@ if __name__ == '__main__':
             cipher_choice = input(">>>  ")
 
             try:
-                exit_check(cipher_choice.upper())
+                utils.exit_check(cipher_choice.upper())
                 cipher_choice = int(cipher_choice)
                 if cipher_choice not in ciphers.keys():
-                    exit_check(cipher_choice)
+                    utils.exit_check(cipher_choice)
                     raise ValueError("Entered value does not exist in cipher list")
             except ValueError:
-                print_invalid_entry_message()
+                utils.print_invalid_entry_message()
             else:
                 break
         return ciphers[cipher_choice]
+
 
     def select_encrypt_decrypt():
         while(True):
@@ -51,50 +41,17 @@ if __name__ == '__main__':
             try:
                 operation_choice = input (">>>  ").upper()
                 if operation_choice not in {"E", "D"}:
-                    exit_check(operation_choice)
+                    utils.exit_check(operation_choice)
                     raise ValueError('Enter "E" to encrypt or "D" to decrypt')
             except ValueError:
-                print_invalid_entry_message()
+                utils.print_invalid_entry_message()
                 continue
             else:
                 return OPERATION_ENCRYPT if operation_choice == "E" else OPERATION_DECRYPT
-
-    def prompt_for_affine_variables(cipher):
-        print("\nEnter key values for 'a' and 'b'")
-        print("If you want to use the default/current values, just press ENTER for each")
-        while(True):
-            try:
-                a_input = (input("\nEnter a value for 'a'\n"
-                                 "CURRENT VALUE: {}\n>>>  ".format(cipher.a)))
-                # See if a value was entered
-                if a_input:
-                    cipher.set_a(int(a_input))
-                # Otherwise, use the current value
-                else:
-                    break
-            except ValueError:
-                print("'a' must be an integer")
-            else:
-                break
-
-        while(True):
-            try:
-                b_input = (input("\nEnter a value for 'b'\n"
-                                 "CURRENT VALUE: {}\n>>>  ".format(cipher.b)))
-                # See if a value was entered
-                if b_input:
-                    cipher.b = int(b_input)
-                # Otherwise, use the current value
-                else:
-                    break
-            except ValueError:
-                print("'b' must be an integer")
-            else:
-                break
         
 
     # Begin UI flow
-    clear_screen()
+    utils.clear_screen()
     print ("Welcome to the Cipher Machine!\n"
            "Follow the prompts to encrypt or decrypt messages.\n"
            "You can always enter 'Q' or 'quit' to leave the program.\n\n")
@@ -105,7 +62,7 @@ if __name__ == '__main__':
         selected_cipher = select_cipher()
 
         if selected_cipher == ciphers[1]:
-            prompt_for_affine_variables(selected_cipher)
+            selected_cipher.prompt_for_variables()
             print("a: {}".format(selected_cipher.a))
             print("b: {}".format(selected_cipher.b))
         
