@@ -7,6 +7,7 @@ from polybius_square import Polybius
 from sys import exit
 
 if __name__ == '__main__':
+    # Create keys for easier display and parsing selections in command line
     ciphers = {key: cipher for key, cipher in 
         zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
     OPERATION_ENCRYPT = "ENCRYPT"
@@ -61,18 +62,38 @@ if __name__ == '__main__':
     def prompt_for_affine_variables(cipher):
         while(True):
             try:
-                cipher.set_a(int(input("Enter a value for 'a'\n>>>  ")))
+                a_input = (input("Enter a value for 'a'\n>>>  "))
+                # See if a value was entered
+                if a_input:
+                    cipher.set_a(int(a_input))
+                # Otherwise, use the current value
+                else:
+                    break
             except ValueError as e:
                 print(e)
+            else:
+                break
+
+        while(True):
+            try:
+                b_input = (input("Enter a value for 'b'\n>>>  "))
+                # See if a value was entered
+                if b_input:
+                    cipher.b = int(b_input)
+                # Otherwise, use the current value
+                else:
+                    break
+            except ValueError as e:
+                print("'b' must be a postiive integer")
             else:
                 break
         
 
     # Begin UI flow
     clear_screen()
-    print ("Welcome to the Cipher Machine!\n")
-    print ("Follow the prompts to encrypt or decrypt messages.")
-    print ("You can always enter 'Q' or 'quit' to leave the program.\n\n")
+    print ("Welcome to the Cipher Machine!\n"
+           "Follow the prompts to encrypt or decrypt messages."
+           "You can always enter 'Q' or 'quit' to leave the program.\n\n")
     while(True):
         selected_operation = select_encrypt_decrypt()
         print("\n{} from which cipher?".format(selected_operation))
