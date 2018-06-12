@@ -60,40 +60,45 @@ if __name__ == '__main__':
                 return OPERATION_ENCRYPT if operation_choice == "E" else OPERATION_DECRYPT
 
     def prompt_for_affine_variables(cipher):
+        print("\nEnter key values for 'a' and 'b'")
+        print("If you want to use the default/current values, just press ENTER for each")
         while(True):
             try:
-                a_input = (input("Enter a value for 'a'\n>>>  "))
+                a_input = (input("\nEnter a value for 'a'\n"
+                                 "CURRENT VALUE: {}\n>>>  ".format(cipher.a)))
                 # See if a value was entered
                 if a_input:
                     cipher.set_a(int(a_input))
                 # Otherwise, use the current value
                 else:
                     break
-            except ValueError as e:
-                print(e)
+            except ValueError:
+                print("'a' must be an integer")
             else:
                 break
 
         while(True):
             try:
-                b_input = (input("Enter a value for 'b'\n>>>  "))
+                b_input = (input("\nEnter a value for 'b'\n"
+                                 "CURRENT VALUE: {}\n>>>  ".format(cipher.b)))
                 # See if a value was entered
                 if b_input:
                     cipher.b = int(b_input)
                 # Otherwise, use the current value
                 else:
                     break
-            except ValueError as e:
-                print("'b' must be a postiive integer")
+            except ValueError:
+                print("'b' must be an integer")
             else:
                 break
         
 
     # Begin UI flow
     clear_screen()
-    print ("""Welcome to the Cipher Machine!
-Follow the prompts to encrypt or decrypt messages.
-You can always enter 'Q' or 'quit' to leave the program.\n\n""")
+    print ("Welcome to the Cipher Machine!\n"
+           "Follow the prompts to encrypt or decrypt messages.\n"
+           "You can always enter 'Q' or 'quit' to leave the program.\n\n")
+
     while(True):
         selected_operation = select_encrypt_decrypt()
         print("\n{} from which cipher?".format(selected_operation))
@@ -101,8 +106,8 @@ You can always enter 'Q' or 'quit' to leave the program.\n\n""")
 
         if selected_cipher == ciphers[1]:
             prompt_for_affine_variables(selected_cipher)
-            print(selected_cipher.a)
-            print(selected_cipher.b)
+            print("a: {}".format(selected_cipher.a))
+            print("b: {}".format(selected_cipher.b))
         
         if selected_operation == OPERATION_ENCRYPT:
             encrypted_text = selected_cipher.encrypt(input("Enter text to encrypt:  "))
