@@ -1,5 +1,5 @@
 import os
-import utils
+import utils.utils as utils
 
 from atbash import Atbash
 from affine import Affine

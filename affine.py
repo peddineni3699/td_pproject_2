@@ -2,8 +2,8 @@
 # 05/22/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
-import math_utils
 import string
+import utils.math_utils as math_utils
 
 from ciphers import Cipher
 from random import shuffle
