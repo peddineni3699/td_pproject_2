@@ -22,4 +22,3 @@ class Cipher:
     def create_one_time_pad(self):
         # Shuffling allows each instance to have its own key
         return shuffle(self.characters)
-
