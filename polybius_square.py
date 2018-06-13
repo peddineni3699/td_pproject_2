@@ -14,12 +14,10 @@ In order to have square dimensions,
 
 This allows the use of a 10x10 Polybius Square, with indexes 00 - 99
 """
-
-
 import string
+from random import shuffle
 
 from ciphers import Cipher
-from random import shuffle
 
 
 class Polybius(Cipher):
