@@ -19,7 +19,6 @@ from caesar import Caesar
 from polybius_square import Polybius
 
 
-
 # Create keys for easier display and parsing selections in command line
 ciphers = {key: cipher for key, cipher in 
             zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
