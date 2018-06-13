@@ -58,7 +58,8 @@ class Polybius(Cipher):
             int(ciphertext)
         except ValueError:
             raise ValueError("Invalid input.  "
-                             "Polybius Square decryption takes only numbers and spaces.")
+                             "Polybius Square decryption takes "
+                             "only numbers and spaces.")
         # Check to ensure that the cast integer is positive
         if int(ciphertext) < 0:
             raise ValueError("Numeric input cannot be negative.")
@@ -66,7 +67,8 @@ class Polybius(Cipher):
         #   because decryption happens in pairs
         if len(ciphertext) % 2 == 1:
             raise ValueError("Could not parse input.  "
-                             "Expected an even number of digits, but received an odd number.")
+                             "Expected an even number of digits, "
+                             "but received an odd number.")
         text = []
         # At this point, the input has been sanitized and can be safely decrypted.
         i_range = iter(range(0, len(ciphertext)))

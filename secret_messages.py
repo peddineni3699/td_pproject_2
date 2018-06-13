@@ -1,20 +1,20 @@
 import os
-import utils.utils as utils
+from sys import exit
 
-from atbash import Atbash
+import utils.utils as utils
 from affine import Affine
+from atbash import Atbash
 from caesar import Caesar
 from polybius_square import Polybius
-from sys import exit
+
 
 if __name__ == '__main__':
     # Create keys for easier display and parsing selections in command line
     ciphers = {key: cipher for key, cipher in 
-        zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
+               zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
     # Constants for operation selection logic
     OPERATION_ENCRYPT = "ENCRYPT"
     OPERATION_DECRYPT = "DECRYPT"
-
 
     def select_cipher():
         """Returns a cipher reference based on user input"""
@@ -29,18 +29,20 @@ if __name__ == '__main__':
                 cipher_choice = int(cipher_choice)
                 if cipher_choice not in ciphers.keys():
                     utils.exit_check(cipher_choice)
-                    raise ValueError("Entered value does not exist in cipher list")
+                    raise ValueError(
+                        "Entered value does not exist in cipher list")
             except ValueError:
                 utils.print_invalid_entry_message()
             else:
                 break
         return ciphers[cipher_choice]
 
-
     def select_encrypt_decrypt():
         """Returns the string literal of encrypt/decrypt operation selection"""
         while(True):
-            print ("Which operation would you like to perform?\nE) Encrypt\nD) Decrypt")
+            print ("Which operation would you like to perform?\n"
+                   "E) Encrypt\n"
+                   "D) Decrypt")
             try:
                 operation_choice = input(">>>  ").upper()
                 # Check for valid input
@@ -51,9 +53,9 @@ if __name__ == '__main__':
                 utils.print_invalid_entry_message()
                 continue
             else:
-                return OPERATION_ENCRYPT if operation_choice == "E" else OPERATION_DECRYPT
+                return (OPERATION_ENCRYPT if operation_choice == "E" 
+                                          else OPERATION_DECRYPT)
         
-
     # Begin UI flow
     utils.clear_screen()
     print ("Welcome to the Cipher Machine!\n"
@@ -73,14 +75,20 @@ if __name__ == '__main__':
         
 
         if selected_operation == OPERATION_ENCRYPT:
-            encrypted_text = selected_cipher.encrypt(input("Enter text to encrypt:  "))
+            encrypted_text = selected_cipher.encrypt(
+                input("Enter text to encrypt:  ")
+            )
             print("---> {}\n".format(encrypted_text))
         else:
             while (True):
                 try:
-                    decrypted_text = selected_cipher.decrypt(input("Enter text to decrypt:  "))
-                # Particularly, the Polybius Square cipher requires a specific input
-                #   This catches any error thrown from the Polybius() class during decryption attempt
+                    decrypted_text = selected_cipher.decrypt(
+                        input("Enter text to decrypt:  ")
+                    )
+                # Particularly, the Polybius Square cipher 
+                #   requires a specific input.
+                # This catches any error thrown 
+                #   from the Polybius() class during decryption attempt
                 except ValueError as e:
                     print("{}\nPlease try again.\n".format(e))
                 else:
