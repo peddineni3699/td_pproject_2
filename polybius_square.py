@@ -2,25 +2,30 @@
 # 05/22/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
+"""Encrypts & decrypts text, based on Polybius Square cipher encryption
+
+In order to have square dimensions, 
+5 subsets of the string library  are utilized:
+    ascii_uppercase     26 characters
+    ascii_lowercase     26 characters
+    digits              10 characters
+    punctuation         32 characters
+    whitespace          6 characters
+
+This allows the use of a 10x10 Polybius Square, with indexes 00 - 99
+"""
+
+
 import string
 
 from ciphers import Cipher
 from random import shuffle
 
-# In order to have square dimensions, 5 subsets of the string library  are utilized:
-#   Uppercase       26 characters
-#   Lowercase       26 characters
-#   Digits (0-9)    10 characters
-#   Punctuation     32 characters
-#   Whitespace       6 characters
-#
-# This allows the use of a 10x10 Polybius Square, with indexes 00 - 99
 
 class Polybius(Cipher):
+    """A transposition cipher based on fractionating"""
     def __init__(self):
-        """Initializes a new Atbash instance with default values"""
-
-        # This implementation supports a square of size 10 x 10
+        """Initializes a new Polybius instance"""
         self.characters = list(
             self.characters
             + string.ascii_lowercase
@@ -31,7 +36,10 @@ class Polybius(Cipher):
 
 
     def encrypt(self, text):
-        """Returns a string of encrypted text"""
+        """Returns a string of encrypted text
+        
+        text -- the text to be encrypted
+        """
         ciphertext = []
         for char in text:
             try:
@@ -48,8 +56,10 @@ class Polybius(Cipher):
 
 
     def decrypt(self, ciphertext):
-        """Returns a string of decrypted text"""
-
+        """Returns a string of decrypted text
+        
+        text -- the text to be decrypted
+        """
         # Remove whitespace from input text.
         #   Allowing whitespace in the entry makes
         #   it easer for useres to be able to parse
@@ -57,7 +67,7 @@ class Polybius(Cipher):
         ciphertext = ciphertext.replace(" ", "")
         # Check to ensure that only numbers have been passed,
         try:
-            # Polybius Square only takes numbers.
+            # Polybius Square decryption only takes numbers.
             #   If any other characters are found, raise an error
             int(ciphertext)
         except ValueError:

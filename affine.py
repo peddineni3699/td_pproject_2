@@ -2,6 +2,16 @@
 # 05/22/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
+"""Encrypts & decrypts text, based on Affine cipher encryption
+
+This implementation supports 5 subsets of the string library:
+    ascii_uppercase     26 characters
+    ascii_lowercase     26 characters
+    digits              10 characters
+    punctuation         32 characters
+    whitespace          6 characters
+"""
+
 import string
 import utils.math_utils as math_utils
 
@@ -10,12 +20,12 @@ from random import shuffle
 from random import randrange
 
 class Affine(Cipher):
+    """A substitution cipher based on linear modulo shifting"""
     def __init__(self, a=23, b=50):
         """Initializes a new Affine instance with default values
         
-        a: Magnitude of cipher shift
-        b: Offset of cipher shift
-        Defaults: a=23, b=50
+        a: Magnitude of cipher shift (default 23)
+        b: Offset of cipher shift (default 50)
         """
         self.characters = list(
             self.characters
@@ -26,7 +36,7 @@ class Affine(Cipher):
         )
 
         try:
-             # a and m must be coprimes, 
+            # a and m must be coprimes, 
             #   meaning that they cannot have any common factor greater than 1.
             # Storing in variable to use in error message
             coprimes_exist = math_utils.are_coprimes(a, len(self.characters))
@@ -51,7 +61,10 @@ class Affine(Cipher):
 
 
     def encrypt(self, text):
-        """Returns a string of encrypted text"""
+        """Returns a string of encrypted text
+        
+        text -- the text to be encrypted
+        """
         ciphertext = []
         # text = text.upper()
         for char in text:
@@ -67,7 +80,10 @@ class Affine(Cipher):
 
 
     def decrypt(self, ciphertext):
-        """Returns a string of decrypted text"""
+        """Returns a string of decrypted text
+        
+        text -- the text to be decrypted
+        """
         text = []
         # ciphertext = ciphertext.upper()
         for char in ciphertext:
@@ -83,7 +99,10 @@ class Affine(Cipher):
 
 
     def set_a(self, number):
-        """Safely sets variable 'a'"""
+        """Safely sets variable 'a'
+        
+        number -- the number intended to be set for 'a'
+        """
         try:
             coprimes_exist = math_utils.are_coprimes(number, len(self.characters))
         except ValueError:
