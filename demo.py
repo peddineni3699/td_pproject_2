@@ -1,3 +1,12 @@
+# Aaron Pope
+# 06/08/2018
+# Treehouse TechDegree - Python, Unit 2: Secret Messages
+
+# NOTE: Prefer secret_messages.py for seeing functionality.
+#       This was simply an extraction of that script for a
+#       targeted purpose.
+#       It is not up-to-date as of 06/12/18.
+
 import os
 
 from atbash import Atbash
