@@ -11,10 +11,9 @@ This implementation supports 5 subsets of the string library:
     punctuation         32 characters
     whitespace          6 characters
 """
-
 import string
-import utils.math_utils as math_utils
 
+import utils.math_utils as math_utils
 from ciphers import Cipher
 from random import shuffle
 from random import randrange
