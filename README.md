@@ -5,11 +5,7 @@ For Treehouse TechDegree (Python), Unit 2: Secret Messages
 General submission guidelines are provided by Treehouse and can be found here: http://treehouse-techdegree.s3.amazonaws.com/Student-Project-Submission-Checklist.pdf
 
 ## Status
-* WIP
-    * Basic flow is working in the loop: [select operation] > [select cipher] > [enter text] > [receive output]
-    * Still needs process for entering keys for Affine cipher, instead of always using default values
-    * UNDECIDED on whether one-time pad will be implemented now or revisited at a future time
-    * Comments still needed
+* Submitted, without Extra Credit
 
 
 # Requirements
