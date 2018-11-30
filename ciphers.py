@@ -1,5 +1,4 @@
 # Provided by Treehouse as a starter file for the project
-#   Modified by Aaron Pope
 
 import string
 

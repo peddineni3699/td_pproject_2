@@ -1,5 +1,3 @@
-# Aaron Pope
-# 05/22/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
 """Encrypts & decrypts text, based on Affine cipher encryption

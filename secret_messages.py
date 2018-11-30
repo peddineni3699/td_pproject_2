@@ -1,5 +1,3 @@
-# Aaron Pope
-# 05/22/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
 """Command line tool to perform encryption & decryption on supported ciphers
@@ -22,6 +20,7 @@ from polybius_square import Polybius
 # Create keys for easier display and parsing selections in command line
 ciphers = {key: cipher for key, cipher in 
             zip(range(1, 5), [Affine(), Atbash(), Caesar(), Polybius()])}
+import pdb;pdb.set_trace()
 # Constants for operation selection logic
 OPERATION_ENCRYPT = "ENCRYPT"
 OPERATION_DECRYPT = "DECRYPT"

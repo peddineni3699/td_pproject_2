@@ -1,5 +1,3 @@
-# Aaron Pope
-# 06/08/2018
 # Treehouse TechDegree - Python, Unit 2: Secret Messages
 
 # NOTE: Prefer secret_messages.py for seeing functionality.
